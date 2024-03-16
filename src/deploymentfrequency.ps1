@@ -217,7 +217,11 @@ function Main ([string] $ownerRepo,
     {
         Write-Host "Deployment frequency over last $numberOfDays days, is $displayMetric $displayUnit, with a DORA rating of '$rating'"        
         Write-Host "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        echo ::set-output name=numberOfDays::$( $numberOfDays)
+        
+        "{numberOfDays}=$numberOfDays" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        "{displayMetric}=$displayMetric" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        "{displayUnit}=$displayUnit" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
 
         return GetFormattedMarkdown -workflowNames $workflowNames -displayMetric $displayMetric -displayUnit $displayUnit -repo $ownerRepo -branch $branch -numberOfDays $numberOfDays -numberOfUniqueDates $uniqueDates.Length.ToString() -color $color -rating $rating
     }
