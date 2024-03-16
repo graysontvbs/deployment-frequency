@@ -39,9 +39,22 @@ runs:
   using: "composite"
   steps:
     - name: Run DORA deployment frequency 
+      id: dora_metrics
       shell: pwsh
       run: |
          $result = ${{ github.action_path }}/src/deploymentfrequency.ps1 -ownerRepo "${{ inputs.owner-repo }}" -workflows "${{ inputs.workflows }}" -branch "${{ inputs.default-branch }}" -numberOfDays ${{ inputs.number-of-days }} -patToken "${{ inputs.pat-token }}" -actionsToken "${{ inputs.actions-token }}" -appId "${{ inputs.app-id }}" -appInstallationId "${{ inputs.app-install-id }}" -appPrivateKey "${{ inputs.app-private-key }}"
-         #Write-Host "::set-output name=result::$result"
-         Write-Output $result >> $env:GITHUB_STEP_SUMMARY
+         $result -split '[\r\n]' | ForEach-Object {
+              if ($_ -match '^(.*?)=(.*)$') {
+                      $name, $value = $matches[1], $matches[2]
+                      "$name=`"$value`"" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+                    }
+            }
+
+    - name: Use Metrics Outputs
+      run: |
+        echo "The display metric is ${{ steps.dora_metrics.outputs.displayMetric }}"
+        echo "The number of days is ${{ steps.dora_metrics.outputs.numberOfDays }}"
+        echo "The display unit is ${{ steps.dora_metrics.outputs.displayUnit }}"
+        echo "The rating is ${{ steps.dora_metrics.outputs.rating }}"
+         
                
