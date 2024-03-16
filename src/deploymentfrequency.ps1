@@ -216,6 +216,7 @@ function Main ([string] $ownerRepo,
     if ($dateList.Count -gt 0 -and $numberOfDays -gt 0)
     {
         Write-Host "Deployment frequency over last $numberOfDays days, is $displayMetric $displayUnit, with a DORA rating of '$rating'"        
+        Write-Host "測試一下真的有進來"
 
         echo numberOfDays=$numberOfDays >> $env:GITHUB_OUTPUT
         echo displayMetric=$displayMetric >> $env:GITHUB_OUTPUT
