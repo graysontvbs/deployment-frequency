@@ -55,12 +55,12 @@ runs:
                     }
             }
 
-    - name: Use Metrics Outputs
-      shell: pwsh
-      run: |
-        echo "The display metric is ${{ steps.dora_metrics.outputs.displayMetric }}"
-        echo "The number of days is ${{ steps.dora_metrics.outputs.numberOfDays }}"
-        echo "The display unit is ${{ steps.dora_metrics.outputs.displayUnit }}"
-        echo "The rating is ${{ steps.dora_metrics.outputs.rating }}"
+    # - name: Use Metrics Outputs
+    #   shell: pwsh
+    #   run: |
+    #     echo "The display metric is ${{ steps.dora_metrics.outputs.displayMetric }}"
+    #     echo "The number of days is ${{ steps.dora_metrics.outputs.numberOfDays }}"
+    #     echo "The display unit is ${{ steps.dora_metrics.outputs.displayUnit }}"
+    #     echo "The rating is ${{ steps.dora_metrics.outputs.rating }}"
          
                
