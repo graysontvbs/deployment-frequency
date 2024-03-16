@@ -219,6 +219,7 @@ function Main ([string] $ownerRepo,
         echo "::set-output name=numberOfDays::$numberOfDays"
         echo "::set-output name=displayMetric::$displayMetric"
         echo "::set-output name=rating::$rating"
+        echo "::set-output name=aaaaa::5"
         return GetFormattedMarkdown -workflowNames $workflowNames -displayMetric $displayMetric -displayUnit $displayUnit -repo $ownerRepo -branch $branch -numberOfDays $numberOfDays -numberOfUniqueDates $uniqueDates.Length.ToString() -color $color -rating $rating
     }
     else
