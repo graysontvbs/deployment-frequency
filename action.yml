@@ -51,6 +51,7 @@ runs:
             }
 
     - name: Use Metrics Outputs
+      shell: pwsh
       run: |
         echo "The display metric is ${{ steps.dora_metrics.outputs.displayMetric }}"
         echo "The number of days is ${{ steps.dora_metrics.outputs.numberOfDays }}"
