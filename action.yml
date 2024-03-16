@@ -4,6 +4,11 @@ author: developermetrics.org
 branding:
   icon: activity
   color: gray-dark
+outputs:
+  job_result: ${{ steps.dora_metrics.outputs.result }}
+  displayMetric: ${{ steps.dora_metrics.outputs.displayMetric }}
+  numberOfDays: ${{ steps.dora_metrics.outputs.numberOfDays }}
+  rating: ${{ steps.dora_metrics.outputs.rating }}
 inputs:
   workflows: # required. string array of the name of the workflows to process
     description: the workflow name that is being scanned. Separate multiple workflows with commas
