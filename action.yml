@@ -4,11 +4,6 @@ author: developermetrics.org
 branding:
   icon: activity
   color: gray-dark
-outputs:
-  job_result: ${{ steps.dora_metrics.outputs.result }}
-  displayMetric: ${{ steps.dora_metrics.outputs.displayMetric }}
-  numberOfDays: ${{ steps.dora_metrics.outputs.numberOfDays }}
-  rating: ${{ steps.dora_metrics.outputs.rating }}
 inputs:
   workflows: # required. string array of the name of the workflows to process
     description: the workflow name that is being scanned. Separate multiple workflows with commas
@@ -54,13 +49,18 @@ runs:
                       "$name=`"$value`"" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
                     }
             }
-
-    # - name: Use Metrics Outputs
-    #   shell: pwsh
-    #   run: |
-    #     echo "The display metric is ${{ steps.dora_metrics.outputs.displayMetric }}"
-    #     echo "The number of days is ${{ steps.dora_metrics.outputs.numberOfDays }}"
-    #     echo "The display unit is ${{ steps.dora_metrics.outputs.displayUnit }}"
-    #     echo "The rating is ${{ steps.dora_metrics.outputs.rating }}"
+outputs:
+  displayMetric:
+    description: "The display metric calculated by the action"
+    value: ${{ steps.dora_metrics.outputs.displayMetric }}
+  numberOfDays:
+    description: "The number of days scanned by the action"
+    value: ${{ steps.dora_metrics.outputs.numberOfDays }}
+  displayUnit:
+    description: "The display unit for the metrics"
+    value: ${{ steps.dora_metrics.outputs.displayUnit }}
+  rating:
+    description: "The DORA rating calculated by the action"
+    value: ${{ steps.dora_metrics.outputs.rating }}
          
                
