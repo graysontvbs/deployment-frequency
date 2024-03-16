@@ -216,14 +216,12 @@ function Main ([string] $ownerRepo,
     if ($dateList.Count -gt 0 -and $numberOfDays -gt 0)
     {
         Write-Host "Deployment frequency over last $numberOfDays days, is $displayMetric $displayUnit, with a DORA rating of '$rating'"        
-        Write-Host "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     
         Write-Output "displayMetric=$displayMetric"
         Write-Output "numberOfDays=$numberOfDays"
         Write-Output "displayUnit=$displayUnit"
         Write-Output "rating=$rating"
 
-        return GetFormattedMarkdown -workflowNames $workflowNames -displayMetric $displayMetric -displayUnit $displayUnit -repo $ownerRepo -branch $branch -numberOfDays $numberOfDays -numberOfUniqueDates $uniqueDates.Length.ToString() -color $color -rating $rating
     }
     else
     {
