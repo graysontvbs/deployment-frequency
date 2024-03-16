@@ -216,10 +216,13 @@ function Main ([string] $ownerRepo,
     if ($dateList.Count -gt 0 -and $numberOfDays -gt 0)
     {
         Write-Host "Deployment frequency over last $numberOfDays days, is $displayMetric $displayUnit, with a DORA rating of '$rating'"        
-        echo "::set-output name=numberOfDays::$numberOfDays"
-        echo "::set-output name=displayMetric::$displayMetric"
-        echo "::set-output name=rating::$rating"
-        echo "::set-output name=aaaaa::5"
+
+        Write-Output "displayMetric=$($displayMetric)" >> $Env:GITHUB_OUTPUT
+        Write-Output "displayUnit=$($displayUnit)" >> $Env:GITHUB_OUTPUT
+        Write-Output "numberOfDays=$($numberOfDays)" >> $Env:GITHUB_OUTPUT
+        Write-Output "rating=$($rating)" >> $Env:GITHUB_OUTPUT
+        
+
         return GetFormattedMarkdown -workflowNames $workflowNames -displayMetric $displayMetric -displayUnit $displayUnit -repo $ownerRepo -branch $branch -numberOfDays $numberOfDays -numberOfUniqueDates $uniqueDates.Length.ToString() -color $color -rating $rating
     }
     else
